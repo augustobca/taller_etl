@@ -32,7 +32,7 @@ models:
   - name: stg_calidad_aire
     description: "Carga de datos de calidad del aire estandarizada"
     columns:
-      - name: ciudad_id
+      - name: nombre_ciudad
         description: "Nombre de la ciudad (PK)"
         data_tests:
           - unique
@@ -43,3 +43,8 @@ models:
       - name: particulas_pm25
         data_tests:
           - not_null
+      - name: categoria_aire
+        description: "Categoría de salud basada en el índice ICA (Bueno, Moderado, Dañino)."
+        data_tests:
+          - accepted_values:
+              values: ['Bueno', 'Moderado', 'Dañino']
