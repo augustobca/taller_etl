@@ -1,0 +1,45 @@
+
+version: 2
+
+models:
+  - name: my_first_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+
+  - name: my_second_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+
+sources:
+  - name: fuentes_unl
+    description: "Fuentes de datos crudos cargadas mediante seeds"
+    schema: public
+    tables:
+      - name: calidad_aire
+        description: "Tabla generada desde el seed calidad_aire.csv"
+
+models:
+  - name: stg_calidad_aire
+    description: "Carga de datos de calidad del aire estandarizada"
+    columns:
+      - name: ciudad_id
+        description: "Nombre de la ciudad (PK)"
+        data_tests:
+          - unique
+          - not_null
+      - name: indice_ica
+        data_tests:
+          - not_null
+      - name: particulas_pm25
+        data_tests:
+          - not_null
